@@ -38,7 +38,18 @@ def init_data():
 
 def run(window):
     # boucle d'affichage
+    last = glfw.get_time()
+    count = 0
     while not glfw.window_should_close(window):
+        current = glfw.get_time()
+        if current - last > 1:
+            last = current
+            print(count)
+            count = 0
+        else:
+            count += 1
+        
+        GL.glClearColor(current%1, 0.5, 0.9, 1.0)
         # nettoyage de la fenêtre : fond et profondeur
         GL.glClear(GL.GL_COLOR_BUFFER_BIT | GL.GL_DEPTH_BUFFER_BIT)
 
